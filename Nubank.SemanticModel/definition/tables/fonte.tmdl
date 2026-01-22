@@ -1,0 +1,93 @@
+table fonte
+	lineageTag: 52f43010-46ae-4139-96e1-11a6a2171d00
+
+	measure 'Valor max' = 1200
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 2a2d9bdd-89b6-47d4-8c36-a5469d98c099
+
+		annotation PBI_FormatHint = {"currencyCulture":"yrl-Latn-BR"}
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 927f087f-b5bb-4b91-aeb1-2b9ddfb868ff
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column title
+		dataType: string
+		lineageTag: 55ce73e6-0eb1-4336-900f-d6b2b252d008
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lojas = ```
+			
+			    SWITCH(
+			        TRUE(),
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "super" ), "Mercado",
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "epa" ), "Mercado",
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "luna" ), "Mercado",
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "ifood" ), "Mercado",
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "sacolao" ), "Mercado",
+			
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "uber" ), "Uber",
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "99app" ), "Uber",
+			
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "estsoft" ), "Compra Online",
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "amazon" ), "Compra Online",
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "shopee" ), "Compra Online",
+			        CONTAINSSTRING ( LOWER ( fonte[title] ), "mercadolivre" ), "Compra Online",
+			
+			        "lazer"
+			)
+			```
+		lineageTag: a2337cdd-6933-439a-95a2-5e981cd1f2da
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeDia = FORMAT([date], "ddd")
+		lineageTag: 2ce98596-0026-4cb3-b196-489a2beff4f9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 8caea1cd-d428-444b-808d-7739fe938651
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	partition fonte = m
+		mode: import
+		source =
+				let
+				    Fonte = Folder.Files("C:\Users\breno\OneDrive\Base de dados Bi\Fonte Nubank"),
+				    #"Arquivos Ocultos Filtrados1" = Table.SelectRows(Fonte, each [Attributes]?[Hidden]? <> true),
+				    #"Invocar Função Personalizada1" = Table.AddColumn(#"Arquivos Ocultos Filtrados1", "Transformar Arquivo", each #"Transformar Arquivo"([Content])),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Invocar Função Personalizada1", {"Name", "Nome da Origem"}),
+				    #"Outras Colunas Removidas1" = Table.SelectColumns(#"Colunas Renomeadas1", {"Nome da Origem", "Transformar Arquivo"}),
+				    #"Transformar Arquivo1" = #"Outras Colunas Removidas1"{0}[Transformar Arquivo],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Transformar Arquivo1",{{"date", type date}, {"title", type text}, {"amount", Int64.Type}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado", "Valor", each [amount]/100),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Personalização Adicionada",{"amount"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Removidas",{{"Valor", Currency.Type}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado1", each [Valor] >= 0)
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

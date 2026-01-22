@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Nubank"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1f614983-63e7-4aca-8205-602f9468a303"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Nubank"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a5bebef8-3eee-49e2-85fa-1136e6ca2e43"
+  }
+}

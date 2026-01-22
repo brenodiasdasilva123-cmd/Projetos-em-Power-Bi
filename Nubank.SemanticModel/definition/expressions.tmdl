@@ -1,0 +1,16 @@
+expression 'Transformar Arquivo' =
+		let
+		    Fonte = (Parâmetro1 as binary) => let
+		    Fonte = Csv.Document(Parâmetro1,[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+		    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true])
+		in
+		    #"Cabeçalhos Promovidos"
+		in
+		    Fonte
+	lineageTag: e1d851f5-1711-4f32-b570-e43ed878d89d
+	queryGroup: 'Transformar Arquivo de fonte\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Function
+
+	annotation PBI_NavigationStepName = Navegação
+
