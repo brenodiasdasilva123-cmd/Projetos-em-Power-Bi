@@ -1,0 +1,119 @@
+table 'Fonte Dolar'
+	lineageTag: caa37dfc-d297-472a-a449-74344cf79644
+
+	measure 'Soma de Compra - Bancário - Valor USD (milhares) mais Soma de Compra - Não Bancário - Valor USD (milhares)' =
+			
+			SUM('Fonte Dolar'[Compra - Bancário - Valor USD (milhares)]) + SUM('Fonte Dolar'[Compra - Não Bancário - Valor USD (milhares)])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 91a009ab-df69-4a2b-ba30-b84ca2e823ab
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalAddition"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Compra - Bancário - Valor USD (milhares)'
+		dataType: decimal
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 25d77392-ff94-4bd1-8335-4c24dc0f2535
+		summarizeBy: sum
+		sourceColumn: Compra - Bancário - Valor USD (milhares)
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Venda - Bancário - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 8e8e3dd7-3831-4954-ba94-b1711045478a
+		summarizeBy: sum
+		sourceColumn: Venda - Bancário - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Compra - Não Bancário - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: be8f8046-f155-4412-8ec6-24e2726c63e0
+		summarizeBy: sum
+		sourceColumn: Compra - Não Bancário - Valor USD (milhares)
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Venda - Não Bancário - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: ad120cd1-d9da-41ad-b485-271cffd8ee86
+		summarizeBy: sum
+		sourceColumn: Venda - Não Bancário - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Total - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 45883972-b2aa-4e75-b775-ad864189a040
+		summarizeBy: sum
+		sourceColumn: Total - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column '% Acumul'
+		dataType: string
+		lineageTag: 7654df7f-1d31-48e1-a54b-2b919295ac15
+		summarizeBy: none
+		sourceColumn: % Acumul
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forma de transferência'
+		dataType: string
+		lineageTag: ca9d22cf-8275-4e9c-958a-c2f8ad3c5a42
+		summarizeBy: none
+		sourceColumn: Forma de transferência
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fonte Dolar' = m
+		mode: import
+		source =
+				let
+				    Fonte = Folder.Files("C:\Users\breno\OneDrive\Base de dados Bi\Fonte Dolar"),
+				    #"C:\Users\breno\OneDrive\Base de dados Bi\Fonte Dolar\_3-Correspondentes 2025-1 csv" = Fonte{[#"Folder Path"="C:\Users\breno\OneDrive\Base de dados Bi\Fonte Dolar\",Name="3-Correspondentes.2025-1.csv"]}[Content],
+				    #"CSV Importado" = Csv.Document(#"C:\Users\breno\OneDrive\Base de dados Bi\Fonte Dolar\_3-Correspondentes 2025-1 csv",[Delimiter=";", Columns=13, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"CSV Importado",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type text}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each ([Column3] <> "")),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Linhas Filtradas",{"Column1"}),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Colunas Removidas", [PromoteAllScalars=true]),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"", type text}, {"Compra - Bancário", type text}, {"_1", type text}, {"Venda - Bancário", type text}, {"_2", type text}, {"Compra - Não Bancário", type text}, {"_3", type text}, {"Venda - Não Bancário", type text}, {"_4", type text}, {"Total", type text}, {"_5", type text}, {"% Acumul", type text}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado1", each ([#""] <> "")),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Linhas Filtradas1",{"_1", "_2", "_3", "_4", "_5"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Removidas1",{{"Compra - Bancário", "Compra - Bancário - Valor USD (milhares)"}, {"Venda - Bancário", "Venda - Bancário - Valor USD (milhares)"}, {"Compra - Não Bancário", "Compra - Não Bancário - Valor USD (milhares)"}, {"Venda - Não Bancário", "Venda - Não Bancário - Valor USD (milhares)"}, {"Total", "Total - Valor USD (milhares)"}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Compra - Bancário - Valor USD (milhares)", Currency.Type}, {"Venda - Bancário - Valor USD (milhares)", Currency.Type}, {"Venda - Não Bancário - Valor USD (milhares)", Currency.Type}, {"Total - Valor USD (milhares)", Currency.Type}, {"Compra - Não Bancário - Valor USD (milhares)", Currency.Type}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado2","VIAGENS INTERNACIONAIS","Compra em espécie",Replacer.ReplaceText,{""}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","TRANSFERÊNCIAS UNILATERAIS","Transferência unilateral (Ordem de pagamento)",Replacer.ReplaceText,{""}),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Valor Substituído1",{{"", "Forma de compra"}}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Colunas Renomeadas1","Transferência unilateral (Ordem de pagamento)","Transferência unilateral (Não envolve comércio)",Replacer.ReplaceText,{"Forma de compra"}),
+				    #"Colunas Renomeadas2" = Table.RenameColumns(#"Valor Substituído2",{{"Forma de compra", "Forma de transferência"}}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Colunas Renomeadas2","Transferência unilateral (Não envolve comércio)","Transferência unilateral",Replacer.ReplaceText,{"Forma de transferência"})
+				in
+				    #"Valor Substituído3"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

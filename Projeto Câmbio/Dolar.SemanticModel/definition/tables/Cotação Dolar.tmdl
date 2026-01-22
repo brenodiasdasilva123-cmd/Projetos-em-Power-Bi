@@ -1,0 +1,136 @@
+table 'Cotação Dolar'
+	lineageTag: 488db580-9e4f-4358-908d-4c05a55100ac
+
+	column 'USDBRL.code'
+		dataType: string
+		lineageTag: 1643a06d-aab0-48d0-9e99-c14274eed137
+		summarizeBy: none
+		sourceColumn: USDBRL.code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'USDBRL.codein'
+		dataType: string
+		lineageTag: e440abdb-8413-4ed6-8ca5-7ced5f1f7071
+		summarizeBy: none
+		sourceColumn: USDBRL.codein
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'USDBRL.name'
+		dataType: string
+		lineageTag: 8957d52c-d48c-4100-93b2-ea6b975f251d
+		summarizeBy: none
+		sourceColumn: USDBRL.name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'USDBRL.high'
+		dataType: string
+		lineageTag: 3e888111-4ffe-4702-bcab-e9115c0f5a83
+		summarizeBy: none
+		sourceColumn: USDBRL.high
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'USDBRL.low'
+		dataType: string
+		lineageTag: f5c4e33f-1b90-4147-b040-a5fc19bc375d
+		summarizeBy: none
+		sourceColumn: USDBRL.low
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'USDBRL.varBid'
+		dataType: string
+		lineageTag: f60d428e-b4e1-4784-ada5-e4f4b3e202c2
+		summarizeBy: none
+		sourceColumn: USDBRL.varBid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'USDBRL.pctChange'
+		dataType: string
+		lineageTag: bb61f060-a66f-4499-ba69-8459e533458f
+		summarizeBy: none
+		sourceColumn: USDBRL.pctChange
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'USDBRL.bid'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: ee5cb565-c68c-4b1b-8a1b-60ea7399ebfd
+		summarizeBy: sum
+		sourceColumn: USDBRL.bid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'USDBRL.ask'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: a7ae0d34-2568-4925-9560-215553d8b111
+		summarizeBy: sum
+		sourceColumn: USDBRL.ask
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'USDBRL.timestamp'
+		dataType: string
+		lineageTag: ad119e80-c81a-4f36-a2cb-b428eb283216
+		summarizeBy: none
+		sourceColumn: USDBRL.timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'USDBRL.create_date'
+		dataType: string
+		lineageTag: ccfc70e3-3d62-4111-8ede-bf17947e4260
+		summarizeBy: none
+		sourceColumn: USDBRL.create_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Compra
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 15568d80-3da8-4549-be3b-59ae72e76780
+		summarizeBy: none
+		sourceColumn: Compra
+
+		annotation SummarizationSetBy = User
+
+	column Venda
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 743d6dbf-9ba6-45a2-bdd4-416e14fb81cb
+		summarizeBy: sum
+		sourceColumn: Venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	partition 'Cotação Dolar' = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://economia.awesomeapi.com.br/json/last/USD-BRL")),
+				    #"Convertido para Tabela" = Table.FromRecords({Fonte}),
+				    #"USDBRL Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "USDBRL", {"code", "codein", "name", "high", "low", "varBid", "pctChange", "bid", "ask", "timestamp", "create_date"}, {"USDBRL.code", "USDBRL.codein", "USDBRL.name", "USDBRL.high", "USDBRL.low", "USDBRL.varBid", "USDBRL.pctChange", "USDBRL.bid", "USDBRL.ask", "USDBRL.timestamp", "USDBRL.create_date"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"USDBRL Expandido",{{"USDBRL.bid", Currency.Type}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado", "Compra", each [USDBRL.bid]/10000),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"USDBRL.ask", Currency.Type}}),
+				    #"Personalização Adicionada1" = Table.AddColumn(#"Tipo Alterado1", "Venda", each [USDBRL.ask]/10000),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada1",{{"Compra", Currency.Type}, {"Venda", Currency.Type}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

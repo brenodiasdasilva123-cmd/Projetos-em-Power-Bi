@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 275,
+            "y": 0
+          },
+          "nodeIndex": "Moeda estrangeira",
+          "nodeLineageTag": "8161c7da-3889-4de0-b5b4-29fd1f3a2bcd",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 543,
+            "y": 0
+          },
+          "nodeIndex": "Finalidade",
+          "nodeLineageTag": "9bcbb25e-ad63-4971-9916-d7328bf6c4ab",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1,
+            "y": 0
+          },
+          "nodeIndex": "Fonte Dolar",
+          "nodeLineageTag": "caa37dfc-d297-472a-a449-74344cf79644",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 806,
+            "y": 0
+          },
+          "nodeIndex": "Operações contratadas",
+          "nodeLineageTag": "78efb7a9-381f-41e6-b447-c55313f84656",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1341,
+            "y": 283.75
+          },
+          "nodeIndex": "Cotação dolar",
+          "nodeLineageTag": "a77168f1-2dbd-4d66-bc32-6385c8f7b163",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

@@ -1,0 +1,119 @@
+table Finalidade
+	lineageTag: 9bcbb25e-ad63-4971-9916-d7328bf6c4ab
+
+	column Column1
+		dataType: string
+		lineageTag: d76f737c-4b58-4537-89f5-df8f3f5eb634
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Compra - PJ - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 3608b8d6-6c00-4918-889a-132fb858dafb
+		summarizeBy: sum
+		sourceColumn: Compra - PJ - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Venda - PJ - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: e3ba515f-0f43-427d-be07-39c6e4d4e97a
+		summarizeBy: sum
+		sourceColumn: Venda - PJ - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Compra - PF - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 6a2fab07-3d52-4932-92d4-6b55eab66925
+		summarizeBy: sum
+		sourceColumn: Compra - PF - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Venda - PF - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: a26a461c-96f4-4f96-af35-92233a77d04e
+		summarizeBy: sum
+		sourceColumn: Venda - PF - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Compra - EST - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 7e533492-ff33-4db1-89d1-644e4c846f01
+		summarizeBy: sum
+		sourceColumn: Compra - EST - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Venda - EST - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 98cfd921-b6f5-452b-8bcd-92ab299ded20
+		summarizeBy: sum
+		sourceColumn: Venda - EST - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Total - Valor USD (milhares)'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 80be8e23-4eb1-442d-89d6-bcae16d3b5a8
+		summarizeBy: sum
+		sourceColumn: Total - Valor USD (milhares)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column '% Acumul'
+		dataType: string
+		lineageTag: dff1caec-d1f4-48a9-8728-5592e8648725
+		summarizeBy: none
+		sourceColumn: % Acumul
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Finalidade = m
+		mode: import
+		source =
+				let
+				    Fonte = Folder.Files("C:\Users\breno\OneDrive\Base de dados Bi\Fonte Dolar"),
+				    #"C:\Users\breno\OneDrive\Base de dados Bi\Fonte Dolar\_4-Finalidade 2025-1 csv" = Fonte{[#"Folder Path"="C:\Users\breno\OneDrive\Base de dados Bi\Fonte Dolar\",Name="4-Finalidade.2025-1.csv"]}[Content],
+				    #"CSV Importado" = Csv.Document(#"C:\Users\breno\OneDrive\Base de dados Bi\Fonte Dolar\_4-Finalidade 2025-1 csv",[Delimiter=";", Columns=17, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"CSV Importado",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type text}, {"Column14", type text}, {"Column15", type text}, {"Column16", type text}, {"Column17", type text}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each ([Column3] <> "")),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Linhas Filtradas",{"Column1"}),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Colunas Removidas", [PromoteAllScalars=true]),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"", type text}, {"Compra - PJ", type text}, {"_1", type text}, {"Venda - PJ", type text}, {"_2", type text}, {"Compra - PF", type text}, {"_3", type text}, {"Venda - PF", type text}, {"_4", type text}, {"Compra - EST", type text}, {"_5", type text}, {"Venda - EST", type text}, {"_6", type text}, {"Total", type text}, {"_7", type text}, {"% Acumul", type text}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado1", each ([#""] <> "")),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Linhas Filtradas1",{"_1", "_2", "_3", "_4", "_5", "_6", "_7"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Removidas1",{{"Compra - PJ", "Compra - PJ - Valor USD (milhares)"}, {"Venda - PJ", "Venda - PJ - Valor USD (milhares)"}, {"Compra - PF", "Compra - PF - Valor USD (milhares)"}, {"Venda - PF", "Venda - PF - Valor USD (milhares)"}, {"Compra - EST", "Compra - EST - Valor USD (milhares)"}, {"Venda - EST", "Venda - EST - Valor USD (milhares)"}, {"Total", "Total - Valor USD (milhares)"}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Compra - PJ - Valor USD (milhares)", Currency.Type}, {"Venda - PJ - Valor USD (milhares)", Currency.Type}, {"Compra - PF - Valor USD (milhares)", Currency.Type}, {"Venda - PF - Valor USD (milhares)", Currency.Type}, {"Compra - EST - Valor USD (milhares)", Currency.Type}, {"Venda - EST - Valor USD (milhares)", Currency.Type}, {"Total - Valor USD (milhares)", Currency.Type}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
