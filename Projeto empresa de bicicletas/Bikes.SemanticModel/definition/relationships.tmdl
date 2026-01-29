@@ -1,0 +1,12 @@
+relationship AutoDetected_6f2e93b2-056d-4705-8c58-16a7f07bf0cc
+	fromColumn: vAssocSeqLineItems.OrderNumber
+	toColumn: vAssocSeqOrders.OrderNumber
+
+relationship AutoDetected_2f8c67f4-826b-4829-8611-2b28db09f8f7
+	fromColumn: vAssocSeqOrders.CustomerKey
+	toColumn: vTargetMail.CustomerKey
+
+relationship AutoDetected_b8cb61d3-3f31-4341-96f2-534c1d94d4e3
+	fromColumn: vDMPrep.CustomerKey
+	toColumn: vTargetMail.CustomerKey
+

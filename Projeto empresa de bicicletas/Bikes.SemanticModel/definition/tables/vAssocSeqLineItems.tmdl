@@ -1,0 +1,40 @@
+table vAssocSeqLineItems
+	lineageTag: dbb089a2-9f21-40b6-996e-0741d95ea659
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 035dc2d1-4862-48b8-8e85-7f0a1bada06c
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 40d67682-6d3d-4335-8a3c-73c9dab99715
+		summarizeBy: sum
+		sourceColumn: LineNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: string
+		lineageTag: 53d4bb07-2f15-4fca-a8b8-03266abbd470
+		summarizeBy: none
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vAssocSeqLineItems = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Databases("DESKTOP-RDEMHO1\SQLEXPRESS"),
+				    AdventureWorksDW2025 = Fonte{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_vAssocSeqLineItems = AdventureWorksDW2025{[Schema="dbo",Item="vAssocSeqLineItems"]}[Data]
+				in
+				    dbo_vAssocSeqLineItems
+
+	annotation PBI_ResultType = Table
+

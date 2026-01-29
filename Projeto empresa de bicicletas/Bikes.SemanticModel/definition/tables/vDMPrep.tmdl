@@ -1,0 +1,129 @@
+table vDMPrep
+	lineageTag: 18f7fec0-e5ee-4b13-88cd-ad5578f21006
+
+	column EnglishProductCategoryName
+		dataType: string
+		lineageTag: 2ced3c58-a591-4956-8ede-85abcab3b85f
+		summarizeBy: none
+		sourceColumn: EnglishProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: string
+		lineageTag: 0c21ec4e-4f1b-47ac-9b20-fd617c38640c
+		summarizeBy: none
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d169093f-dc6d-4af1-b9d0-98ce5bf9309c
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: f3d103e4-8bf0-4bcd-96b9-5d5401308ac2
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 61a6ad38-a0c2-4a44-89c4-bc2ebcb61088
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column IncomeGroup
+		dataType: string
+		lineageTag: ec3dddca-9e0a-4887-a8f4-ae2fa231afbf
+		summarizeBy: none
+		sourceColumn: IncomeGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 0903b9f3-3055-46f8-adbf-d03fbe132d6b
+		summarizeBy: sum
+		sourceColumn: CalendarYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 94cfe9ea-922a-46de-9bf3-5a635cb9d9a8
+		summarizeBy: sum
+		sourceColumn: FiscalYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 3dcf41c8-d1e9-4d16-9b5f-ebf335d4a43c
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: eddb3e28-652f-49b8-89ea-140a768123cb
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: cd51d510-150c-4dd3-9bd2-35812f050887
+		summarizeBy: sum
+		sourceColumn: LineNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d96fa43-db0a-46fb-92ae-99a473e67ebf
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 6f3af8cc-f252-4eb7-b97d-8878d01bf3e1
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	partition vDMPrep = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Databases("DESKTOP-RDEMHO1\SQLEXPRESS"),
+				    AdventureWorksDW2025 = Fonte{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_vDMPrep = AdventureWorksDW2025{[Schema="dbo",Item="vDMPrep"]}[Data]
+				in
+				    dbo_vDMPrep
+
+	annotation PBI_ResultType = Table
+

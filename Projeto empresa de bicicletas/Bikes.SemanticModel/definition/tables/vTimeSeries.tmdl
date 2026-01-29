@@ -1,0 +1,79 @@
+table vTimeSeries
+	lineageTag: e79fad31-68ca-4233-ae4c-06571ffd9e6d
+
+	column ModelRegion
+		dataType: string
+		lineageTag: ef7a4660-941c-4a7f-a002-a9ca0733bc41
+		summarizeBy: none
+		sourceColumn: ModelRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: a614f69d-493d-4321-80e3-7bcdfb320f40
+		summarizeBy: sum
+		sourceColumn: TimeIndex
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 07715469-02a9-405c-a775-4fb343eaed2e
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 4421577e-1ced-4771-974f-e6eb574b211f
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column CalendarYear
+		dataType: int64
+		formatString: 0
+		lineageTag: b66c97c3-a145-4e5e-975d-401081d0c316
+		summarizeBy: sum
+		sourceColumn: CalendarYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 65930a7e-b0bf-4443-aa6e-4af318f18dd8
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportingDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ae8e4424-fb73-4402-a541-4896ea3e5d2a
+		summarizeBy: none
+		sourceColumn: ReportingDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vTimeSeries = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Databases("DESKTOP-RDEMHO1\SQLEXPRESS"),
+				    AdventureWorksDW2025 = Fonte{[Name="AdventureWorksDW2025"]}[Data],
+				    dbo_vTimeSeries = AdventureWorksDW2025{[Schema="dbo",Item="vTimeSeries"]}[Data]
+				in
+				    dbo_vTimeSeries
+
+	annotation PBI_ResultType = Table
+
