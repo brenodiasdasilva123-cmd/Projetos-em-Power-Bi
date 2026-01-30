@@ -26,6 +26,9 @@
       }
     ]
   },
+  "publicCustomVisuals": [
+    "tMap8E0FD0EA52A241AAB7312149B2333625"
+  ],
   "resourcePackages": [
     {
       "name": "SharedResources",

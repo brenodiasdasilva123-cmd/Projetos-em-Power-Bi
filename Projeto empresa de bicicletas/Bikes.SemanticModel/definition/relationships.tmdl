@@ -10,3 +10,11 @@ relationship AutoDetected_b8cb61d3-3f31-4341-96f2-534c1d94d4e3
 	fromColumn: vDMPrep.CustomerKey
 	toColumn: vTargetMail.CustomerKey
 
+relationship AutoDetected_038b92d4-18b3-4896-9f40-7b653742d6cf
+	fromColumn: vAssocSeqLineItems.Model
+	toColumn: Qtde_Vendas_Modelo.Model
+
+relationship AutoDetected_45cceb19-bef8-46d8-b072-18b1012a43cc
+	fromColumn: vDMPrep.Model
+	toColumn: Qtde_Vendas_Modelo.Model
+
