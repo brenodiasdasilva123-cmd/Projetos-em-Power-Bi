@@ -1,0 +1,16 @@
+Paleta de cores
+
+Paleta 1 — Neutra moderna
+• Azul petróleo: #2F3E46
+• Cinza claro: #CAD2C5
+• Off-white: #F4F4F4
+
+Paleta 2 — Profissional e suave
+• Azul marinho: #1F3A5F
+• Cinza médio: #6C757D
+• Verde menta: #A3D9A5
+
+Paleta 3 — Minimalista clara
+• Azul claro: #DCEAF7
+• Cinza gelo: #E9ECEF
+• Azul acinzentado: #5C677D
