@@ -8,28 +8,41 @@ Este dashboard apresenta uma visão clara e interativa das vendas, com base em d
 
   <!-- Conteúdo oculto começa aqui -->
 
-##🔹 Visão Geral
+## 🔹 Visão Geral
+
+
 O painel consolida os principais indicadores de vendas, permitindo uma leitura rápida do desempenho comercial. Os cartões exibem o total de vendas, o ticket médio, o total de clientes atendidos e a quantidade de produtos vendidos no período selecionado.
 
-##🔹 Distribuição por Produto
+## 🔹 Distribuição por Produto
+
+
 As vendas são segmentadas por produto, permitindo identificar os itens mais vendidos e aqueles com menor participação no faturamento.
 
-##🔹 Desempenho por Cliente
+## 🔹 Desempenho por Cliente
+
+
 O gráfico de barras apresenta o volume de vendas por cliente, facilitando a análise de concentração de receita e o relacionamento comercial com cada conta.
 
-##🔹 Evolução das Vendas ao Longo do Tempo
+## 🔹 Evolução das Vendas ao Longo do Tempo
+
+
 O gráfico de linha mostra o comportamento das vendas ao longo do período analisado, permitindo observar tendências, picos e variações sazonais.
 
-##🔹 Filtros Interativos
+## 🔹 Filtros Interativos
+
+
 O dashboard conta com filtros por data, cliente, produto e categoria, possibilitando análises personalizadas conforme a necessidade do usuário.
 
-##🔹 Objetivo do Dashboard
+## 🔹 Objetivo do Dashboard
+
+
 Este projeto demonstra:
 
 Modelagem e organização de dados comerciais
 Criação de métricas e indicadores no Power BI
 Uso de visualizações para storytelling analítico
 Capacidade de transformar dados em insights acionáveis para tomada de decisão
+</details>
 
 <img src="https://github.com/user-attachments/assets/29fa554c-d116-4797-ae77-4730327fb63f" width="700px" />
 
