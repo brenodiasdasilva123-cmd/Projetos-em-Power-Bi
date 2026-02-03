@@ -1,0 +1,50 @@
+table analise_categoria
+	lineageTag: 8c70040a-e043-4ca3-b3ed-8a88bdea5ad0
+
+	column categoria
+		dataType: string
+		lineageTag: cb1a0393-f25b-4335-acca-6608f822a643
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtde_vendas
+		dataType: int64
+		formatString: 0
+		lineageTag: 62522191-d701-42f4-a935-e8407898f563
+		summarizeBy: none
+		sourceColumn: qtde_vendas
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_vendas
+		dataType: int64
+		formatString: 0
+		lineageTag: 35701529-74cc-4f32-b191-196ae13af0ba
+		summarizeBy: sum
+		sourceColumn: total_vendas
+
+		annotation SummarizationSetBy = Automatic
+
+	column ticket_medio
+		dataType: int64
+		formatString: 0
+		lineageTag: 314db771-1472-468f-b9bf-d68b24485b28
+		summarizeBy: sum
+		sourceColumn: ticket_medio
+
+		annotation SummarizationSetBy = Automatic
+
+	partition analise_categoria = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Databases("DESKTOP-RDEMHO1\SQLEXPRESS"),
+				    treino_SQL = Fonte{[Name="treino_SQL"]}[Data],
+				    dbo_analise_categoria = treino_SQL{[Schema="dbo",Item="analise_categoria"]}[Data]
+				in
+				    dbo_analise_categoria
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,41 @@
+table analise_cliente
+	lineageTag: 4958a226-b442-46c2-81c5-1f8e29295a7a
+
+	column cliente
+		dataType: string
+		lineageTag: d9e17983-fd59-471a-9362-5c8cd1e71553
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_vendas
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d55f6c3-5e3b-4006-8345-b65e25a8a65b
+		summarizeBy: sum
+		sourceColumn: total_vendas
+
+		annotation SummarizationSetBy = Automatic
+
+	column ticket_medio
+		dataType: int64
+		formatString: 0
+		lineageTag: 32958aa3-35eb-47ff-8a44-ed6bcd1d6f93
+		summarizeBy: sum
+		sourceColumn: ticket_medio
+
+		annotation SummarizationSetBy = Automatic
+
+	partition analise_cliente = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Databases("DESKTOP-RDEMHO1\SQLEXPRESS"),
+				    treino_SQL = Fonte{[Name="treino_SQL"]}[Data],
+				    dbo_analise_cliente = treino_SQL{[Schema="dbo",Item="analise_cliente"]}[Data]
+				in
+				    dbo_analise_cliente
+
+	annotation PBI_ResultType = Table
+

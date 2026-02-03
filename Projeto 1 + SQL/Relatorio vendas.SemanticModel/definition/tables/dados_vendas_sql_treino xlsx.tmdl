@@ -1,0 +1,84 @@
+table 'dados_vendas_sql_treino xlsx'
+	lineageTag: dda24725-d5f4-4aae-86c2-a5d670eb90d6
+
+	column id_venda
+		dataType: int64
+		formatString: 0
+		lineageTag: 03e9461d-7a69-4d24-bab9-f211185afdce
+		summarizeBy: sum
+		sourceColumn: id_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_venda
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1ab1a85e-e39c-4fb8-a847-3a8d0b607ff3
+		summarizeBy: none
+		sourceColumn: data_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente
+		dataType: string
+		lineageTag: cf314598-b975-4c64-98dd-1e35c1231ec8
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column produto
+		dataType: string
+		lineageTag: 7df3e660-f549-4f17-a8d9-16315d4bc5f9
+		summarizeBy: none
+		sourceColumn: produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: c65b775d-ec10-444d-98f2-a4523896b474
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: a728db3d-4580-4c93-8535-13a3b09f8477
+		summarizeBy: sum
+		sourceColumn: quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column preco_unitario
+		dataType: int64
+		formatString: 0
+		lineageTag: 490198cd-8db5-40be-a517-71190436c3ee
+		summarizeBy: sum
+		sourceColumn: preco_unitario
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_total
+		dataType: int64
+		formatString: 0
+		lineageTag: ddb51468-c011-4d96-a891-11c4ce8ecd2b
+		summarizeBy: sum
+		sourceColumn: valor_total
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dados_vendas_sql_treino xlsx' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Databases("DESKTOP-RDEMHO1\SQLEXPRESS"),
+				    treino_SQL = Fonte{[Name="treino_SQL"]}[Data],
+				    dbo_dados_vendas_sql_treino.xlsx = treino_SQL{[Schema="dbo",Item="dados_vendas_sql_treino.xlsx"]}[Data]
+				in
+				    dbo_dados_vendas_sql_treino.xlsx
+
+	annotation PBI_ResultType = Table
+

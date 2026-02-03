@@ -1,0 +1,39 @@
+table analise_compras_acima_ticket_medio
+	lineageTag: 093881ca-9a2a-4685-aa8d-361ac4f38052
+
+	column cliente
+		dataType: string
+		lineageTag: b40c2b9e-6a0f-4efb-9f03-59172796ee54
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column produto
+		dataType: string
+		lineageTag: 9f8a318d-9187-4da6-b970-d781fedada2e
+		summarizeBy: none
+		sourceColumn: produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 559aaf22-ac7b-42de-a81e-f08d8ea595a5
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	partition analise_compras_acima_ticket_medio = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Databases("DESKTOP-RDEMHO1\SQLEXPRESS"),
+				    treino_SQL = Fonte{[Name="treino_SQL"]}[Data],
+				    dbo_analise_compras_acima_ticket_medio = treino_SQL{[Schema="dbo",Item="analise_compras_acima_ticket_medio"]}[Data]
+				in
+				    dbo_analise_compras_acima_ticket_medio
+
+	annotation PBI_ResultType = Table
+
