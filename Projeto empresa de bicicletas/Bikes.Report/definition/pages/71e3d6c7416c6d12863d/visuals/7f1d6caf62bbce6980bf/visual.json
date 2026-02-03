@@ -1,19 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "3ddb985f4216b6735bc4",
+  "name": "7f1d6caf62bbce6980bf",
   "position": {
     "x": 18.480243161094226,
-    "y": 216.89969604863222,
-    "z": 2000,
-    "height": 493.13069908814595,
-    "width": 362.79635258358667,
-    "tabOrder": 2000
+    "y": 17.507598784194531,
+    "z": 7002,
+    "height": 178.96656534954408,
+    "width": 299.57446808510639,
+    "tabOrder": 7002
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "slicer",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -31,146 +31,81 @@
               "active": true
             }
           ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Qtde_Vendas_Modelo"
-                        }
-                      },
-                      "Property": "qtde_vendas_modelo"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(Qtde_Vendas_Modelo.qtde_vendas_modelo)",
-              "nativeQueryRef": "Soma de qtde_vendas_modelo"
-            }
-          ]
         }
       },
       "sortDefinition": {
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Column": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Qtde_Vendas_Modelo"
-                      }
-                    },
-                    "Property": "qtde_vendas_modelo"
+                  "SourceRef": {
+                    "Entity": "Qtde_Vendas_Modelo"
                   }
                 },
-                "Function": 0
+                "Property": "Model"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
-      "categoryAxis": [
+      "data": [
         {
           "properties": {
-            "showAxisTitle": {
+            "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'Basic'"
                 }
               }
-            },
-            "show": {
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "selectAllCheckboxEnabled": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "labelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1000D"
-                }
-              }
             },
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
-            },
-            "showAxisTitle": {
+            "singleSelect": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
             },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#2F3E46'"
-                    }
-                  }
-                }
-              }
-            },
-            "borderShow": {
+            "strictSingleSelect": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
-            },
-            "borderColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#CAD2C5'"
-                    }
-                  }
-                }
-              }
             }
           }
         }
       ],
-      "labels": [
+      "header": [
         {
           "properties": {
             "show": {
@@ -179,8 +114,14 @@
                   "Value": "false"
                 }
               }
-            },
-            "bold": {
+            }
+          }
+        }
+      ],
+      "pendingChangesIcon": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -195,10 +136,24 @@
       "title": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Quantidade Vendida'"
+                  "Value": "'Modelos'"
                 }
               }
             }
@@ -208,6 +163,13 @@
       "background": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "color": {
               "solid": {
                 "color": {
@@ -216,6 +178,13 @@
                       "Value": "'#F4F4F4'"
                     }
                   }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -240,6 +209,13 @@
                       "Value": "'#2F3E46'"
                     }
                   }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
@@ -282,7 +258,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "392fe73b91a3e1d341e3",
+        "name": "1d9eaa2c54c98a0a6121",
         "field": {
           "Column": {
             "Expression": {
@@ -294,25 +270,6 @@
           }
         },
         "type": "Categorical"
-      },
-      {
-        "name": "8c0fc186991c37185e1b",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Qtde_Vendas_Modelo"
-                  }
-                },
-                "Property": "qtde_vendas_modelo"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

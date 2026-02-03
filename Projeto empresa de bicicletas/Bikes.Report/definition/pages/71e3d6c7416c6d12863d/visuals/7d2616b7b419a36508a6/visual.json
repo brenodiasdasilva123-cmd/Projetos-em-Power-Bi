@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "aecf265344b29adfb177",
+  "name": "7d2616b7b419a36508a6",
   "position": {
     "x": 401.7021276595745,
-    "y": 216.89969604863222,
-    "z": 5000,
-    "height": 247.05167173252281,
+    "y": 478.5410334346505,
+    "z": 7001,
+    "height": 231.48936170212767,
     "width": 449.36170212765961,
-    "tabOrder": 5000
+    "tabOrder": 7001
   },
   "visual": {
-    "visualType": "pieChart",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "vAssocSeqOrders"
+                      "Entity": "vDMPrep"
                     }
                   },
                   "Property": "Region"
                 }
               },
-              "queryRef": "vAssocSeqOrders.Region",
+              "queryRef": "vDMPrep.Region",
               "nativeQueryRef": "Region",
               "active": true
             }
@@ -41,7 +41,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "vTimeSeries"
+                          "Entity": "vDMPrep"
                         }
                       },
                       "Property": "Amount"
@@ -50,7 +50,7 @@
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(vTimeSeries.Amount)",
+              "queryRef": "Sum(vDMPrep.Amount)",
               "nativeQueryRef": "Soma de Amount"
             }
           ]
@@ -65,7 +65,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "vTimeSeries"
+                        "Entity": "vDMPrep"
                       }
                     },
                     "Property": "Amount"
@@ -237,6 +237,129 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CAD2C5'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "vDMPrep"
+                          }
+                        },
+                        "Property": "Region"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'North America'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C8C6C4'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "vDMPrep"
+                          }
+                        },
+                        "Property": "Region"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Pacific'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2F3E46'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "vDMPrep"
+                          }
+                        },
+                        "Property": "Region"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Europe'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         }
       ],
       "labels": [
@@ -274,7 +397,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Vendas por região'"
+                  "Value": "'Venda de acessórios por região'"
                 }
               }
             }
@@ -379,12 +502,12 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "c905e2877326e03769ed",
+        "name": "6e0bed479279d115bc44",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "vAssocSeqOrders"
+                "Entity": "vDMPrep"
               }
             },
             "Property": "Region"
@@ -393,14 +516,14 @@
         "type": "Categorical"
       },
       {
-        "name": "e201679a53467582dc19",
+        "name": "f28db186d94398464966",
         "field": {
           "Aggregation": {
             "Expression": {
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "vTimeSeries"
+                    "Entity": "vDMPrep"
                   }
                 },
                 "Property": "Amount"

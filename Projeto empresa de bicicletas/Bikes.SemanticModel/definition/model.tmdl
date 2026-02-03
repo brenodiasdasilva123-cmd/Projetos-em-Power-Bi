@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["vAssocSeqLineItems","vAssocSeqOrders","vDMPrep","vTargetMail","vTimeSeries","DimDate","Qtde_Vendas_Modelo"]
+annotation PBI_QueryOrder = ["vAssocSeqLineItems","vAssocSeqOrders","vDMPrep","vTargetMail","vTimeSeries","DimDate","Qtde_Vendas_Modelo","Medidas"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -19,6 +19,7 @@ ref table vTargetMail
 ref table vTimeSeries
 ref table DimDate
 ref table Qtde_Vendas_Modelo
+ref table Medidas
 
 ref cultureInfo pt-BR
 

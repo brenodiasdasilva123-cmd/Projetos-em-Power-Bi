@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "3ddb985f4216b6735bc4",
+  "name": "062d1601219dd40442c3",
   "position": {
-    "x": 18.480243161094226,
+    "x": 867.59878419452889,
     "y": 216.89969604863222,
-    "z": 2000,
-    "height": 493.13069908814595,
-    "width": 362.79635258358667,
-    "tabOrder": 2000
+    "z": 6000,
+    "height": 406.56534954407294,
+    "width": 395.86626139817633,
+    "tabOrder": 6000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Qtde_Vendas_Modelo"
+                      "Entity": "DimDate"
                     }
                   },
-                  "Property": "Model"
+                  "Property": "FiscalQuarter"
                 }
               },
-              "queryRef": "Qtde_Vendas_Modelo.Model",
-              "nativeQueryRef": "Model",
+              "queryRef": "DimDate.FiscalQuarter",
+              "nativeQueryRef": "Soma de FiscalQuarter",
               "active": true
             }
           ]
@@ -36,22 +36,17 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Qtde_Vendas_Modelo"
-                        }
-                      },
-                      "Property": "qtde_vendas_modelo"
+                    "SourceRef": {
+                      "Entity": "Medidas"
                     }
                   },
-                  "Function": 0
+                  "Property": "Qtde_Vendas"
                 }
               },
-              "queryRef": "Sum(Qtde_Vendas_Modelo.qtde_vendas_modelo)",
-              "nativeQueryRef": "Soma de qtde_vendas_modelo"
+              "queryRef": "Medidas.Contagem_Dim_Date",
+              "nativeQueryRef": "Qtde_Vendas"
             }
           ]
         }
@@ -60,18 +55,13 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Measure": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Qtde_Vendas_Modelo"
-                      }
-                    },
-                    "Property": "qtde_vendas_modelo"
+                  "SourceRef": {
+                    "Entity": "Medidas"
                   }
                 },
-                "Function": 0
+                "Property": "Qtde_Vendas"
               }
             },
             "direction": "Descending"
@@ -84,17 +74,45 @@
       "categoryAxis": [
         {
           "properties": {
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Scalar'"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Quarter'"
                 }
               }
             }
@@ -104,10 +122,17 @@
       "valueAxis": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000D"
+                  "Value": "0D"
                 }
               }
             },
@@ -121,14 +146,21 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
-            "show": {
+            "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "'Vendas'"
+                }
+              }
+            },
+            "switchAxisPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -148,25 +180,25 @@
                   }
                 }
               }
-            },
-            "borderShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "borderColor": {
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#CAD2C5'"
+                      "Value": "'#2F3E46'"
                     }
                   }
                 }
               }
             }
+          },
+          "selector": {
+            "metadata": "Medidas.Contagem_Dim_Date"
           }
         }
       ],
@@ -189,16 +221,50 @@
             }
           }
         }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            },
+            "areaShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
       "title": [
         {
           "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Quantidade Vendida'"
+                  "Value": "'Vendas por Quarter'"
                 }
               }
             }
@@ -208,6 +274,13 @@
       "background": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "color": {
               "solid": {
                 "color": {
@@ -216,6 +289,13 @@
                       "Value": "'#F4F4F4'"
                     }
                   }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -240,6 +320,13 @@
                       "Value": "'#2F3E46'"
                     }
                   }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
@@ -282,34 +369,29 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "392fe73b91a3e1d341e3",
+        "name": "20d1b6fdf1ab81e6340d",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Qtde_Vendas_Modelo"
+                "Entity": "DimDate"
               }
             },
-            "Property": "Model"
+            "Property": "FiscalQuarter"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       },
       {
-        "name": "8c0fc186991c37185e1b",
+        "name": "43276959286a6b8c0d01",
         "field": {
-          "Aggregation": {
+          "Measure": {
             "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Qtde_Vendas_Modelo"
-                  }
-                },
-                "Property": "qtde_vendas_modelo"
+              "SourceRef": {
+                "Entity": "Medidas"
               }
             },
-            "Function": 0
+            "Property": "Qtde_Vendas"
           }
         },
         "type": "Advanced"

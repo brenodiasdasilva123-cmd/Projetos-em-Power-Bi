@@ -1,0 +1,126 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 302.35593831751339,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 852.35593831751339,
+            "y": 260.642605092836
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "1258ce55-f306-4e15-a839-13325fd5c3b2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 514.63782855370221,
+            "y": 528.39939135121051
+          },
+          "nodeIndex": "Qtde_Vendas_Modelo",
+          "nodeLineageTag": "44675c6c-6b65-4062-9355-a6e34b94539f",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 618.35593831751328,
+            "y": 94.775066395850558
+          },
+          "nodeIndex": "vAssocSeqLineItems",
+          "nodeLineageTag": "dbb089a2-9f21-40b6-996e-0741d95ea659",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.16792570719724,
+            "y": -50
+          },
+          "nodeIndex": "vAssocSeqOrders",
+          "nodeLineageTag": "28e67637-08ec-4240-9e29-229074fa9ab0",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 230.4314481037448,
+            "y": 471.285210185672
+          },
+          "nodeIndex": "vDMPrep",
+          "nodeLineageTag": "18f7fec0-e5ee-4b13-88cd-ad5578f21006",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 121.08668376293815
+          },
+          "nodeIndex": "vTargetMail",
+          "nodeLineageTag": "f858c852-fc34-4474-99f9-a255d7419dcc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136.3559383175134,
+            "y": 286.642605092836
+          },
+          "nodeIndex": "vTimeSeries",
+          "nodeLineageTag": "e79fad31-68ca-4233-ae4c-06571ffd9e6d",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1370.3559383175134,
+            "y": 358.642605092836
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "e39c7953-cdcd-4e50-9fb3-e13836b12d78",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

@@ -1,0 +1,20 @@
+table Medidas
+	lineageTag: e39c7953-cdcd-4e50-9fb3-e13836b12d78
+
+	measure Qtde_Vendas = COUNT(DimDate[CalendarQuarter])
+		formatString: 0
+		lineageTag: e329d1aa-0a5d-4c26-90a7-650f17b8ee49
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Fonte = "",
+				    #"Colunas Removidas" = Table.RemoveColumns(Fonte,{"Medidas"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+
