@@ -44,7 +44,7 @@ Uso de visualizações para storytelling analítico
 Capacidade de transformar dados em insights acionáveis para tomada de decisão
 </details>
 
-<img src="https://github.com/user-attachments/assets/29fa554c-d116-4797-ae77-4730327fb63f" width="700px" />
+<img src="https://github.com/user-attachments/assets/b7c38902-4139-4c28-b90a-168b452b2d6a" width="700px" />
 
 
  ## 📊 Análise de Gastos – Nubank
