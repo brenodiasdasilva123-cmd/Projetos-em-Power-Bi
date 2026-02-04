@@ -1,34 +1,8 @@
-relationship AutoDetected_8b427f87-f35a-412f-af24-8b0f14845877
-	fromColumn: analise_compras_acima_ticket_medio.categoria
-	toColumn: analise_categoria.categoria
-
 relationship AutoDetected_2c8e097d-889d-4bf2-8c26-553065bfcd2a
 	fromColumn: 'dados_vendas_sql_treino xlsx'.categoria
 	toColumn: analise_categoria.categoria
 
-relationship AutoDetected_0252b473-937a-4a28-87d6-ae55dc55746c
-	fromColumn: total_vendas_produto.qtde_vendas
-	toColumn: analise_categoria.qtde_vendas
-
-relationship AutoDetected_36bc793e-f63d-413a-87ab-5f50693c01f0
-	fromColumn: analise_compras_acima_ticket_medio.cliente
-	toColumn: analise_cliente.cliente
-
 relationship AutoDetected_a94da836-a4c0-4bd4-b3e1-044afc91e90e
 	fromColumn: 'dados_vendas_sql_treino xlsx'.cliente
 	toColumn: analise_cliente.cliente
-
-relationship AutoDetected_6693d6e2-8c26-41e3-a35c-718d87b1b076
-	isActive: false
-	fromColumn: analise_compras_acima_ticket_medio.produto
-	toColumn: total_vendas_produto.produto
-
-relationship AutoDetected_54487414-1978-44fb-823d-834e14a7dbf5
-	isActive: false
-	fromColumn: 'dados_vendas_sql_treino xlsx'.produto
-	toColumn: total_vendas_produto.produto
-
-relationship AutoDetected_11728228-d360-44d6-bd79-89d5388d560f
-	fromColumn: Vendas_mes_ano.produto
-	toColumn: total_vendas_produto.produto
 

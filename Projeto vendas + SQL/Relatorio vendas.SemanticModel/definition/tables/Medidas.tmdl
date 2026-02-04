@@ -1,0 +1,26 @@
+table Medidas
+	lineageTag: 3eafd35d-c74b-4a3b-b189-70f48e8f15dd
+
+	measure Ticket_Medio = AVERAGE('dados_vendas_sql_treino xlsx'[valor_total])
+		lineageTag: a9afba7a-d37c-40b3-90d1-d378d49e1077
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 90c36f2e-be0b-4bdf-bb5e-26e9e69d6839
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = eb2573cd381c4bcba6c90fb925edda8c
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

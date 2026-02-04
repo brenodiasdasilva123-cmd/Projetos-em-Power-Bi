@@ -11,7 +11,7 @@
         {
           "location": {
             "x": 462.59455895382189,
-            "y": 380.05208915688269
+            "y": 795.99740201733107
           },
           "nodeIndex": "analise_categoria",
           "nodeLineageTag": "8c70040a-e043-4ca3-b3ed-8a88bdea5ad0",
@@ -19,12 +19,12 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 6
         },
         {
           "location": {
             "x": 467.43112336093566,
-            "y": 601.291559530395
+            "y": 1017.2368723908434
           },
           "nodeIndex": "analise_cliente",
           "nodeLineageTag": "4958a226-b442-46c2-81c5-1f8e29295a7a",
@@ -32,25 +32,12 @@
             "height": 145,
             "width": 234
           },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 155,
-            "y": 19
-          },
-          "nodeIndex": "analise_compras_acima_ticket_medio",
-          "nodeLineageTag": "093881ca-9a2a-4685-aa8d-361ac4f38052",
-          "size": {
-            "height": 272,
-            "width": 234
-          },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
             "x": 818.83094070987738,
-            "y": 332.75625028835867
+            "y": 748.701563148807
           },
           "nodeIndex": "dados_vendas_sql_treino xlsx",
           "nodeLineageTag": "dda24725-d5f4-4aae-86c2-a5d670eb90d6",
@@ -58,30 +45,16 @@
             "height": 272,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 5
         },
         {
           "location": {
-            "x": 463.67011341574357,
-            "y": 0
+            "x": 640.23638175605538,
+            "y": 356.33484233728717
           },
-          "nodeIndex": "total_vendas_produto",
-          "nodeLineageTag": "73c2ee7e-3c92-42cc-bba8-a1af5eba3cc3",
+          "nodeIndex": "Medidas",
           "size": {
-            "height": 152,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 983.39906729070049,
-            "y": 0
-          },
-          "nodeIndex": "Vendas_mes_ano",
-          "nodeLineageTag": "c336c96e-7962-43f7-936b-ee61773a4af3",
-          "size": {
-            "height": 152,
+            "height": 200,
             "width": 234
           },
           "zIndex": 0

@@ -22,7 +22,7 @@ table analise_categoria
 		dataType: int64
 		formatString: 0
 		lineageTag: 35701529-74cc-4f32-b191-196ae13af0ba
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: total_vendas
 
 		annotation SummarizationSetBy = Automatic
@@ -31,7 +31,7 @@ table analise_categoria
 		dataType: int64
 		formatString: 0
 		lineageTag: 314db771-1472-468f-b9bf-d68b24485b28
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: ticket_medio
 
 		annotation SummarizationSetBy = Automatic

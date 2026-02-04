@@ -8,16 +8,14 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["analise_categoria","analise_cliente","analise_compras_acima_ticket_medio","total_vendas_produto","Vendas_mes_ano","dados_vendas_sql_treino xlsx"]
+annotation PBI_QueryOrder = ["analise_categoria","analise_cliente","dados_vendas_sql_treino xlsx"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table analise_categoria
 ref table analise_cliente
-ref table analise_compras_acima_ticket_medio
-ref table total_vendas_produto
-ref table Vendas_mes_ano
 ref table 'dados_vendas_sql_treino xlsx'
+ref table Medidas
 
 ref cultureInfo pt-BR
 
