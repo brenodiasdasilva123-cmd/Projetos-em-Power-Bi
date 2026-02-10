@@ -5,7 +5,7 @@ table vTargetMail
 		dataType: int64
 		formatString: 0
 		lineageTag: a009e629-064b-469e-a791-9aa7a5f0f7e5
-		summarizeBy: none
+		summarizeBy: count
 		sourceColumn: CustomerKey
 
 		annotation SummarizationSetBy = Automatic
